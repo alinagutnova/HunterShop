@@ -1,0 +1,38 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Детали товара";
+}
+
+<h1>Товары</h1>
+<div class="row">
+    @if (Model == null)
+    {
+        <h1>Нет товара с данным id</h1>
+    }
+
+    else
+    {
+        <div class="card mb-12" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="https://via.placeholder.com/300" class="img-fluid rounded-start" alt="Товар">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">@Model.Name</h5>
+                        <p class="card-text">@Model.Description</p>
+                        <p class="card-text h5 text-primary">@Model.Cost ₽</p>
+
+                        <form method="post" asp-controller="Cart" asp-action="AddToCart">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <button type="submit" class="btn btn-primary mt-2">
+                                🛒 Добавить в корзину
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+

@@ -1,18 +1,26 @@
-﻿using HunterShop.Models;
+﻿using HunterShop.Data;
+using HunterShop.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HunterShop.Controllers
 {
     public class ProductController : Controller
     {
+        IProductRepository productRepository;
+
+        public ProductController(IProductRepository productRepository)
+        {
+            this.productRepository = productRepository;
+        }
+
         public IActionResult AllProducts()
         {
-            List<Product> products = new List<Product>()
-            {
-                new Product("лук тисовый","лук выполнен из ценной породы дерева",5000),
-                new Product("ружье дальнобойное","дистанция 500 м",12000)
-            };
-            return View(products);
+            return View(productRepository.GetAll());
+        }
+
+        public IActionResult Details(int id)
+        {
+            return View(productRepository.GetById(id));
         }
     }
 }

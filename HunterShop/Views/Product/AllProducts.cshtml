@@ -17,6 +17,10 @@
                         <h5 class="card-title">@good.Name</h5>
                         <p class="card-text">@good.Description</p>
                         <p class="card-text"><small class="text-muted">@good.Cost р.</small></p>
+                        <div class="btn-group" role="group" aria-label="Действия с товаром">
+                            <button type="button" class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("AddToCart", "Cart", new { id = good.Id })'">В корзину</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='@Url.Action("Details", "Product", new { id = good.Id })'">Детали</button>
+                        </div>
                     </div>
                 </div>
             </div>
