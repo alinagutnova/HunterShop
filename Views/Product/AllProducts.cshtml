@@ -1,0 +1,29 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Товары";
+}
+
+<h1>Товары</h1>
+<div class="row">
+@foreach (var good in Model)
+{
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="https://vikings.help/users/vikings/imgExtCatalog/big/m245.png" class="card-img" alt="">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">@good.Name</h5>
+                        <p class="card-text">@good.Description</p>
+                        <p class="card-text"><small class="text-muted">@good.Cost р.</small></p>
+                        <div class="btn-group" role="group" aria-label="Действия с товаром">
+                            <button type="button" class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("Add", "Cart", new { id = good.Id })'">В корзину</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="location.href='@Url.Action("Details", "Product", new { id = good.Id })'">Детали</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+}
+</div>
